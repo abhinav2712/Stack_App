@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface Stack<T> {
   push(item: T): void;
-  pop(): void;
-  peek(): T | null;
+  pop(): T | undefined;
+  peek(): T | undefined;
   size(): number;
 }
 
 class ArrayStack<T> implements Stack<T> {
-  private items: T[];
-
-  constructor() {
-    this.items = [];
-  }
+  private items: T[] = [];
 
   push(item: T): void {
     this.items.push(item);
   }
 
-  pop(): void {
-    this.items.pop();
+  pop(): T | undefined {
+    return this.items.pop();
   }
 
-  peek(): T | null {
-    if (this.items.length === 0) {
-      return null;
-    }
+  peek(): T | undefined {
     return this.items[this.items.length - 1];
   }
 
@@ -34,34 +27,25 @@ class ArrayStack<T> implements Stack<T> {
   }
 }
 
-function App() {
-  const [stack, setStack] = useState<ArrayStack<number>>(new ArrayStack());
-  const [inputValue, setInputValue] = useState("");
+const App = () => {
+  const [stack, setStack] = useState<Stack<number>>(new ArrayStack<number>());
 
   const handlePush = () => {
-    const newItem = parseInt(inputValue, 10);
-    if (!isNaN(newItem)) {
-      stack.push(newItem);
-      setStack(new ArrayStack([...stack]));
-      setInputValue("");
-    }
+    stack.push(Math.floor(Math.random() * 100));
+    setStack(stack);
   };
 
   const handlePop = () => {
     stack.pop();
-    setStack(new ArrayStack([...stack]));
+    setStack(stack);
   };
 
   const handlePeek = () => {
-    const topItem = stack.peek();
-    if (topItem !== null) {
-      alert(topItem);
-    }
+    console.log(stack.peek());
   };
 
   const handleSize = () => {
-    const size = stack.size();
-    alert(size);
+    console.log(stack.size());
   };
 
   return (
@@ -71,21 +55,16 @@ function App() {
       <button onClick={handlePop}>Pop</button>
       <button onClick={handlePeek}>Peek</button>
       <button onClick={handleSize}>Size</button>
-      <br />
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
       <ul>
-        {stack
-          .toArray()
-          .map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
+        {stack.size() === 0 && <li>Stack is empty.</li>}
+        {stack.size() > 0 &&
+          stack
+            .toString()
+            .split(',')
+            .map((item, index) => <li key={index}>{item}</li>)}
       </ul>
     </div>
   );
-}
+};
 
 export default App;
