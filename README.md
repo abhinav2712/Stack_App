@@ -1,7 +1,7 @@
 # Stack Usage App (Not Completed)
-This is a simple example that demonstrates the use of a stack data structure in TypeScript within a React app. We define an interface for the Stack, and then implement it using an ArrayStack class. We then use this stack in our App component, which renders buttons for pushing, popping, peeking, and getting the size of the stack, as well as displaying the current contents of the stack. Note that we're using the useState hook to keep track of the current stack, and re-rendering the component when the stack is updated.
+This readme.md provides an example of how a stack data structure can be utilized in a TypeScript-based React app. The demonstration involves defining a Stack interface and subsequently implementing it using an ArrayStack class. The stack is then utilized within the App component, which renders buttons for pushing, popping, peeking, and getting the size of the stack, in addition to displaying the current contents of the stack. It is worth noting that the useState hook is leveraged to maintain the current stack and re-render the component as the stack is updated.
 
-This is just one example of how DSA can be used in a React app with TypeScript. Depending on the needs of your app, you may need to use other data structures and algorithms as well. More work need to be done
+It is essential to emphasize that this is only one instance of how DSA can be integrated into a TypeScript-based React app. Depending on the app's requirements, various data structures and algorithms may be necessary. It is also important to mention that this project is still under development, and further work needs to be done.
 
 ## Installation
 Make sure you have Node.js and npm installed on your system. You can download them from the official Node.js website: https://nodejs.org/en/download/
